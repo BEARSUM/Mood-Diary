@@ -61,6 +61,7 @@ const GlobalStyles = createGlobalStyle`
 
     input, textarea {
         font-family: inherit;
+        outline: none;
     }
     
     ul > li {
