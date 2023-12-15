@@ -1,8 +1,20 @@
+import { useState } from "react";
+
 import Line from "components/common/Line";
 
 import * as S from "./index.styled";
 
 const DiaryEditor = () => {
+  const [diaryState, setDiaryState] = useState({
+    title: "",
+    content: "",
+    mood: 1,
+  });
+
+  const handleChangeDiary = (e) => {
+    setDiaryState({ ...diaryState, [e.target.name]: e.target.value });
+    console.log(diaryState);
+  };
   return (
     <S.Container>
       <S.Header>오늘의 일기</S.Header>
@@ -13,18 +25,32 @@ const DiaryEditor = () => {
       </S.Description>
       <S.Title>
         <S.Subheading>제목</S.Subheading>
-        <input className="title" type="text" />
+        <input
+          name="title"
+          value={diaryState.title}
+          onChange={handleChangeDiary}
+        />
       </S.Title>
       <S.Content>
         <S.Subheading>내용</S.Subheading>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <textarea
+          name="content"
+          value={diaryState.content}
+          onChange={handleChangeDiary}
+        />
       </S.Content>
       <S.MoodScore>
-        <S.Subheading htmlFor="moodScore">오늘의 감정 점수</S.Subheading>
-        <select name="moodScore" id="moodScore">
-          <option value="sad">1</option>
-          <option value="fine">2</option>
-          <option value="grate">3</option>
+        <S.Subheading>오늘의 감정 점수</S.Subheading>
+        <select
+          name="mood"
+          value={diaryState.mood}
+          onChange={handleChangeDiary}
+        >
+          {Array(5)
+            .fill(1)
+            .map((_, i) => (
+              <option value={i + 1}>{i + 1}</option>
+            ))}
         </select>
       </S.MoodScore>
       <S.SaveBtn>저장하기</S.SaveBtn>
