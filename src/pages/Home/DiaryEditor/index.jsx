@@ -13,10 +13,14 @@ const DiaryEditor = () => {
 
   const handleChangeDiary = (e) => {
     setDiaryState({ ...diaryState, [e.target.name]: e.target.value });
-    console.log(diaryState);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("일기가 성공적으로 저장되었습니다!");
   };
   return (
-    <S.Container>
+    <S.Container onSubmit={handleSubmit}>
       <S.Header>오늘의 일기</S.Header>
       <Line />
       <S.Description>
@@ -53,7 +57,7 @@ const DiaryEditor = () => {
             ))}
         </select>
       </S.MoodScore>
-      <S.SaveBtn>저장하기</S.SaveBtn>
+      <S.SaveBtn type="submit">저장하기</S.SaveBtn>
     </S.Container>
   );
 };

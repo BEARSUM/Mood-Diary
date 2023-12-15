@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { flexSpaceBetweenCenter } from "styles/common";
 
-const Container = styled.div`
+const Container = styled.form`
   background-color: ${({ theme }) => theme.PALETTE.white};
   border-radius: 10px;
   width: 588px;
