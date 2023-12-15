@@ -40,6 +40,14 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     
+    html {
+        height: auto;
+        min-height: 100%;
+        background-image: url('/assets/img/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
     body {
         font-family: 'Pretendard', sans-serif;
         color: ${({ theme }) => theme.PALETTE.black};
