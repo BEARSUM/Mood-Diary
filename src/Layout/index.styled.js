@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.header`
+const Container = styled.div`
   background-img: url("/public/assets/background/background");
 `;
 
