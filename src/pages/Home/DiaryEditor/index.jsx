@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import Line from "components/common/Line";
 
@@ -10,6 +10,8 @@ const DiaryEditor = () => {
     content: "",
     mood: 1,
   });
+  const titleInput = useRef();
+  const contentInput = useRef();
 
   const handleChangeDiary = (e) => {
     setDiaryState({ ...diaryState, [e.target.name]: e.target.value });
@@ -17,6 +19,17 @@ const DiaryEditor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (diaryState.title.length < 1) {
+      titleInput.current.focus();
+      return;
+    }
+
+    if (diaryState.content.length < 1) {
+      contentInput.current.focus();
+      return;
+    }
+
     alert("일기가 성공적으로 저장되었습니다!");
   };
   return (
@@ -33,6 +46,7 @@ const DiaryEditor = () => {
           name="title"
           value={diaryState.title}
           onChange={handleChangeDiary}
+          ref={titleInput}
         />
       </S.Title>
       <S.Content>
@@ -41,6 +55,7 @@ const DiaryEditor = () => {
           name="content"
           value={diaryState.content}
           onChange={handleChangeDiary}
+          ref={contentInput}
         />
       </S.Content>
       <S.MoodScore>
