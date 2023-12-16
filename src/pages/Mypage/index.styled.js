@@ -1,21 +1,26 @@
 import styled from "styled-components";
+import { flexSpaceBetweenCenter } from "styles/common";
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.PALETTE.white};
   border-radius: 10px;
-  padding: 32px;
+  padding: 54px 48px;
   margin: 0 64px;
-
-  header {
-    font-weight: 700;
-    font-size: ${({ theme }) => theme.FONT_SIZE.sm};
-    margin-bottom: 48px;
-  }
+`;
+const Header = styled.header`
+  ${flexSpaceBetweenCenter}
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.FONT_SIZE.md};
+  margin-bottom: 24px;
 `;
 const Number = styled.div`
+  color: ${({ theme }) => theme.PALETTE.gray[200]};
   font-weight: 400;
-  font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+  font-size: ${({ theme }) => theme.FONT_SIZE.md};
   margin-bottom: 24px;
+  span {
+    font-weight: 500;
+  }
 `;
 const PostList = styled.div`
   border: 1px solid ${({ theme }) => theme.PALETTE.gray[100]};
@@ -26,4 +31,4 @@ const PostList = styled.div`
     border-bottom: none;
   }
 `;
-export { Container, PostList, Number };
+export { Container, Header, PostList, Number };
