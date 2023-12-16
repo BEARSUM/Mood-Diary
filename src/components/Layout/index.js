@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react";
+import React, { createContext, useReducer, useRef } from "react";
 
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
@@ -31,6 +31,8 @@ const reducer = (state, action) => {
   }
   return newState;
 };
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
 function Layout() {
   const [data, dispatch] = useReducer(reducer, []);
@@ -40,7 +42,7 @@ function Layout() {
   const onCreate = (date, title, content, mood) => {
     const newItem = {
       id: dataId.current,
-      date: newDate(date).getTime(),
+      date: new Date(date).getTime(),
       title,
       content,
       mood,
@@ -57,7 +59,7 @@ function Layout() {
   const onEdit = (targetId, date, title, content, mood) => {
     const newItem = {
       id: targetId,
-      date: newDate(date).getTime(),
+      date: new Date(date).getTime(),
       title,
       content,
       mood,
@@ -68,7 +70,11 @@ function Layout() {
   return (
     <S.Container>
       <Header />
-      <Outlet />
+      <DiaryStateContext.Provider value={data}>
+        <DiaryDispatchContext.Provider value={(onCreate, onRemove, onEdit)}>
+          <Outlet />
+        </DiaryDispatchContext.Provider>
+      </DiaryStateContext.Provider>
     </S.Container>
   );
 }
