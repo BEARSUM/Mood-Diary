@@ -1,10 +1,11 @@
 import * as S from "./index.styled";
 import DiaryEditor from "./DiaryEditor";
+import ReactCalendar from "./Calendar";
 
 const Home = () => {
   return (
     <S.Container>
-      <div>캘린더</div>
+      <ReactCalendar />
       <DiaryEditor />
     </S.Container>
   );
