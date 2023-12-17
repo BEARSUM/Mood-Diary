@@ -4,7 +4,7 @@ import { flexSpaceBetweenCenter } from "styles/common";
 const Container = styled.form`
   background-color: ${({ theme }) => theme.PALETTE.white};
   border-radius: 10px;
-  width: 588px;
+  width: 956px;
   padding: 60px;
 `;
 const Header = styled.div`

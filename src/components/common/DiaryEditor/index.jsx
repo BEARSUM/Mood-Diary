@@ -1,77 +1,91 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { diaryDateState } from "recoil/atoms/date.atom";
+import { diaryState } from "recoil/atoms/diary.atom";
 
 import Line from "components/common/Line";
+import MoodItem from "./MoodItem";
 
 import * as S from "./index.styled";
 
 const DiaryEditor = () => {
-  const [diaryState, setDiaryState] = useState({
-    title: "",
-    content: "",
-    mood: 1,
-  });
+  const [diary, setDiary] = useRecoilState(diaryState);
+
+  const selectedDate = useRecoilValue(diaryDateState);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [mood, setMood] = useState(1);
+
   const titleInput = useRef();
   const contentInput = useRef();
 
-  const handleChangeDiary = (e) => {
-    setDiaryState({ ...diaryState, [e.target.name]: e.target.value });
-  };
+  const dataId = useRef(0); //초기화 방지
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (diaryState.title.length < 1) {
+    if (title.length < 1) {
       titleInput.current.focus();
       return;
     }
 
-    if (diaryState.content.length < 1) {
+    if (content.length < 1) {
       contentInput.current.focus();
       return;
     }
 
+    setDiary([
+      ...diary,
+      { id: dataId.current, title, content, mood, createdAt: selectedDate },
+    ]);
+    dataId.current += 1;
     alert("일기가 성공적으로 저장되었습니다!");
   };
   return (
     <S.Container onSubmit={handleSubmit}>
       <S.Header>오늘의 일기</S.Header>
       <Line />
+
       <S.Description>
         <div>오늘은 어떤 하루를 보내셨나요? :)</div>
-        <div>2023.10.11</div>
+        <div>{selectedDate}</div>
       </S.Description>
+
       <S.Title>
         <S.Subheading>제목</S.Subheading>
         <input
           name="title"
-          value={diaryState.title}
-          onChange={handleChangeDiary}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           ref={titleInput}
         />
       </S.Title>
+
       <S.Content>
         <S.Subheading>내용</S.Subheading>
         <textarea
           name="content"
-          value={diaryState.content}
-          onChange={handleChangeDiary}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
           ref={contentInput}
         />
       </S.Content>
+
       <S.MoodScore>
         <S.Subheading>오늘의 감정 점수</S.Subheading>
-        <select
-          name="mood"
-          value={diaryState.mood}
-          onChange={handleChangeDiary}
-        >
+        <S.Mood>
           {Array(5)
             .fill(1)
             .map((_, i) => (
-              <option value={i + 1}>{i + 1}</option>
+              <MoodItem
+                index={i}
+                isSelected={i + 1 === mood}
+                onClick={() => setMood(i + 1)}
+              />
             ))}
-        </select>
+        </S.Mood>
       </S.MoodScore>
+
       <S.SaveBtn type="submit">저장하기</S.SaveBtn>
     </S.Container>
   );

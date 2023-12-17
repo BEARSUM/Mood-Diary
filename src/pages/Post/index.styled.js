@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  background-img: url("/public/assets/background/background");
+  padding: 54px 56px;
+  margin: 0 64px;
 `;
 
 export { Container };
