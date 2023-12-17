@@ -1,12 +1,14 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { diaryDateState } from "recoil/atoms/date.atom";
 import { diaryState } from "recoil/atoms/diary.atom";
 
 import Line from "components/common/Line";
+import Button from "../Button";
 import MoodItem from "./MoodItem";
 
 import * as S from "./index.styled";
+import { useNavigate } from "react-router-dom";
 
 const DiaryEditor = () => {
   const [diary, setDiary] = useRecoilState(diaryState);
@@ -41,6 +43,8 @@ const DiaryEditor = () => {
     dataId.current += 1;
     alert("일기가 성공적으로 저장되었습니다!");
   };
+
+  const navigate = useNavigate();
   return (
     <S.Container onSubmit={handleSubmit}>
       <S.Header>오늘의 일기</S.Header>
@@ -85,8 +89,14 @@ const DiaryEditor = () => {
             ))}
         </S.Mood>
       </S.MoodScore>
-
-      <S.SaveBtn type="submit">저장하기</S.SaveBtn>
+      <S.Buttons>
+        <Button color="reverse" onClick={() => navigate(-1)}>
+          취소
+        </Button>
+        <Button color="basic" type="submit">
+          저장하기
+        </Button>
+      </S.Buttons>
     </S.Container>
   );
 };
