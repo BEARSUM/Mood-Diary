@@ -1,16 +1,26 @@
+import { useState, useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { diaryDateState } from "recoil/atoms/date.atom";
 import Calendar from "react-calendar";
 import moment from "moment";
 import "react-calendar/dist/Calendar.css";
-import { useState } from "react";
 
+import { getDateFormat } from "utils/getDateFormat";
 import * as S from "./index.styled";
 
 const ReactCalendar = () => {
   const [value, onChange] = useState(new Date());
+  const [_, setSelectedDate] = useRecoilState(diaryDateState);
+
+  useEffect(() => {
+    const { dateString, dayName } = getDateFormat(value);
+    setSelectedDate(`${dateString} ${dayName}`);
+  }, [value]);
+
   return (
     <S.Container>
       <Calendar
-        formatDay={(locale, date) => moment(date).format("DD")}
+        formatDay={(_, date) => moment(date).format("DD")}
         onChange={onChange}
         value={value}
         tileContent={({ date, view }) => {
