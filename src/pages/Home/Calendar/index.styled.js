@@ -2,16 +2,20 @@ import styled from "styled-components";
 import { flexCenter, flexColumnCenter } from "styles/common";
 
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
+
   * {
     font-family: "Pretendard", sans-serif;
   }
 
   .react-calendar {
-    width: 480px;
+    width: 400px;
+    border: none;
   }
 
   .react-calendar__navigation__label > span {
-    font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+    font-size: ${({ theme }) => theme.FONT_SIZE.md};
     font-weight: 700;
     color: ${({ theme }) => theme.PALETTE.black};
   }
@@ -37,7 +41,7 @@ const Container = styled.div`
       font-weight: 500;
     }
     img {
-      width: 20px;
+      width: 24px;
     }
   }
 
