@@ -1,12 +1,16 @@
 import styled, { css } from "styled-components";
 
 export const colorCSS = {
-  blue: css`
+  basic: css`
+    background: ${({ theme }) => theme.PALETTE.mainColor};
+    color: ${({ theme }) => theme.PALETTE.white};
+  `,
+  reverse: css`
     background: ${({ theme }) => theme.PALETTE.white};
     border: 1px solid ${({ theme }) => theme.PALETTE.mainColor};
     color: ${({ theme }) => theme.PALETTE.mainColor};
   `,
-  red: css`
+  cancel: css`
     background: ${({ theme }) => theme.PALETTE.white};
     border: 1px solid ${({ theme }) => theme.PALETTE.error};
     color: ${({ theme }) => theme.PALETTE.error};
