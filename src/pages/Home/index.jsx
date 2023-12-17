@@ -1,12 +1,12 @@
 import * as S from "./index.styled";
-import DiaryEditor from "./DiaryEditor";
 import ReactCalendar from "./Calendar";
+import PostDetail from "./PostDetail";
 
 const Home = () => {
   return (
     <S.Container>
       <ReactCalendar />
-      <DiaryEditor />
+      <PostDetail />
     </S.Container>
   );
 };
