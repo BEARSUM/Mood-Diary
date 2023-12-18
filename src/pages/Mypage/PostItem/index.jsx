@@ -13,8 +13,8 @@ const PostItem = ({ diary }) => {
       <S.Row>
         <S.Title>{title}</S.Title>
         <S.Buttons>
-          <Button color="blue">수정</Button>
-          <Button color="red">삭제</Button>
+          <Button color="reverse">수정</Button>
+          <Button color="error">삭제</Button>
         </S.Buttons>
       </S.Row>
     </S.Container>
