@@ -13,8 +13,7 @@ const ReactCalendar = () => {
   const [_, setSelectedDate] = useRecoilState(diaryDateState);
 
   useEffect(() => {
-    const { dateString, dayName } = getDateFormat(value);
-    setSelectedDate(`${dateString} ${dayName}`);
+    setSelectedDate(value);
   }, [value]);
 
   return (

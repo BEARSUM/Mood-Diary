@@ -7,6 +7,8 @@ import Line from "components/common/Line";
 import Button from "components/common/Button";
 import MoodItem from "./MoodItem";
 
+import { getDateFormat } from "utils/getDateFormat";
+
 import * as S from "./index.styled";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +16,8 @@ const Post = () => {
   const [diary, setDiary] = useRecoilState(diaryState);
 
   const selectedDate = useRecoilValue(diaryDateState);
+  const { dateString, dayName } = getDateFormat(selectedDate);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [mood, setMood] = useState(1);
@@ -53,7 +57,7 @@ const Post = () => {
 
       <S.Description>
         <div>오늘은 어떤 하루를 보내셨나요? :)</div>
-        <div>{selectedDate}</div>
+        <div>{dateString + " " + dayName}</div>
       </S.Description>
 
       <S.Title>
