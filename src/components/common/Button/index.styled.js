@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { flexCenter } from "styles/common";
 
 export const colorCSS = {
   basic: css`
@@ -15,10 +16,13 @@ export const colorCSS = {
     border: 1px solid ${({ theme }) => theme.PALETTE.error};
     color: ${({ theme }) => theme.PALETTE.error};
   `,
+  transparent: css`
+    background: transparent;
+  `,
 };
 export const Button = styled.button`
   ${({ color }) => color && colorCSS[color]}
-
+  ${flexCenter}
   border-radius: 10px;
   cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
   padding: 8px 18px;
