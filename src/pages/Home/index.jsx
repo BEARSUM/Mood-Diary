@@ -3,6 +3,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { diaryDateState } from "recoil/atoms/date.atom";
 import { diaryState } from "recoil/atoms/diary.atom";
 
+import moment from "moment";
+
 import ReactCalendar from "./Calendar";
 import PostDetail from "./PostDetail";
 import Nothing from "./Nothing";
@@ -15,7 +17,11 @@ const Home = () => {
   const [selectedDiary, setSelectedDiary] = useState({});
 
   useEffect(() => {
-    const targetDiary = diary.find((it) => it.createdAt === selectedDate);
+    const targetDiary = diary.find(
+      (it) =>
+        moment(it.createdAt).format("YYYY-MM-DD") ===
+        moment(selectedDate).format("YYYY-MM-DD")
+    );
     setSelectedDiary(targetDiary);
   }, [selectedDate]);
 
