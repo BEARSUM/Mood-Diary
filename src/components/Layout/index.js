@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useRef } from "react";
+import React, { useReducer, useRef } from "react";
 
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
@@ -70,11 +70,9 @@ function Layout() {
   return (
     <S.Container>
       <Header />
-      <DiaryStateContext.Provider value={data}>
-        <DiaryDispatchContext.Provider value={(onCreate, onRemove, onEdit)}>
-          <Outlet />
-        </DiaryDispatchContext.Provider>
-      </DiaryStateContext.Provider>
+      <main>
+        <Outlet />
+      </main>
     </S.Container>
   );
 }

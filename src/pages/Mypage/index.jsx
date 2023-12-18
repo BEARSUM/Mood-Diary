@@ -1,41 +1,59 @@
+import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { diaryState } from "recoil/atoms/diary.atom";
+
 import PostItem from "./PostItem";
+import Button from "components/common/Button";
+import Line from "components/common/Line";
+
+import { getDateFormat } from "utils/getDateFormat";
+
 import * as S from "./index.styled";
 
 const Mypage = () => {
-  //임시 데이터
-  const dummyDiaryList = [
-    {
-      id: 1,
-      title: "떡볶이는 맛있어",
-      content: "달달하고 매콤~한 맛있는 떡볶이.",
-      mood: 5,
-      createdAt: new Date().getTime(),
-    },
-    {
-      id: 2,
-      title: "라면은 맛있어",
-      content: "달달하고 매콤~한 맛있는 라면은",
-      mood: 3,
-      createdAt: new Date().getTime(),
-    },
-    {
-      id: 3,
-      title: "치킨는 맛있어",
-      content: "달달하고 매콤~한 맛있는 치킨.",
-      mood: 2,
-      createdAt: new Date().getTime(),
-    },
-  ];
+  const diary = useRecoilValue(diaryState);
+  const [data, setData] = useState([]); //선택된 월별 일기 데이터
+  const [curDate, setCurDate] = useState(new Date());
+  const { dateNoDay } = getDateFormat(curDate);
+
+  useEffect(() => {
+    const firstDate = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
+    const lastDate = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0);
+
+    setData(
+      diary.filter(
+        (it) => firstDate <= it.createdAt && lastDate >= it.createdAt
+      )
+    );
+  }, [diary, curDate]);
+
+  const increaseMonth = () => {
+    setCurDate(new Date(curDate.getFullYear(), curDate.getMonth() + 1));
+  };
+
+  const decreaseMonth = () => {
+    setCurDate(new Date(curDate.getFullYear(), curDate.getMonth() - 1));
+  };
+
   return (
     <S.Container>
       <S.Header>
-        <div>일기 관리</div>
-        <S.Number>
-          총 <span>{dummyDiaryList.length}</span>개의 일기
-        </S.Number>
+        <S.Month>{dateNoDay} 통계</S.Month>
+        <S.Buttons>
+          <Button color="transparent" onClick={decreaseMonth}>
+            <img src="/assets/img/left.svg" alt="left-icon" />
+          </Button>
+          <Button color="transparent" onClick={increaseMonth}>
+            <img src="/assets/img/right.svg" alt="right-icon" />
+          </Button>
+        </S.Buttons>
       </S.Header>
+      <Line />
+      <S.Number>
+        총 <span>{data.length}</span>개의 일기
+      </S.Number>
       <S.PostList>
-        {dummyDiaryList.map((el) => (
+        {data.map((el) => (
           <PostItem key={el.id} diary={el} />
         ))}
       </S.PostList>
