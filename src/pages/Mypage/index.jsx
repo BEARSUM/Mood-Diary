@@ -12,8 +12,20 @@ import * as S from "./index.styled";
 
 const Mypage = () => {
   const diary = useRecoilValue(diaryState);
+  const [data, setData] = useState([]); //선택된 월별 일기 데이터
   const [curDate, setCurDate] = useState(new Date());
   const { dateNoDay } = getDateFormat(curDate);
+
+  useEffect(() => {
+    const firstDate = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
+    const lastDate = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0);
+
+    setData(
+      diary.filter(
+        (it) => firstDate <= it.createdAt && lastDate >= it.createdAt
+      )
+    );
+  }, [diary, curDate]);
 
   const increaseMonth = () => {
     setCurDate(new Date(curDate.getFullYear(), curDate.getMonth() + 1));
@@ -38,10 +50,10 @@ const Mypage = () => {
       </S.Header>
       <Line />
       <S.Number>
-        총 <span>{diary.length}</span>개의 일기
+        총 <span>{data.length}</span>개의 일기
       </S.Number>
       <S.PostList>
-        {diary.map((el) => (
+        {data.map((el) => (
           <PostItem key={el.id} diary={el} />
         ))}
       </S.PostList>
