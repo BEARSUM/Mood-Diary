@@ -1,28 +1,32 @@
 import styled from "styled-components";
-import { flexSpaceBetweenCenter } from "styles/common";
+import { flexCenter, flexSpaceBetweenCenter } from "styles/common";
 
 const Container = styled.form`
   background-color: ${({ theme }) => theme.PALETTE.white};
   border-radius: 10px;
-  width: 956px;
+  width: 800px;
   padding: 60px;
+
+  section {
+    margin-bottom: 32px;
+  }
 `;
 const Header = styled.div`
   font-size: ${({ theme }) => theme.FONT_SIZE.hg};
   font-weight: 800;
   margin-bottom: 24px;
 `;
+
 const Description = styled.div`
   margin-top: 16px;
+  margin-bottom: 40px;
   ${flexSpaceBetweenCenter}
   color: ${({ theme }) => theme.PALETTE.gray[200]};
   font-size: ${({ theme }) => theme.FONT_SIZE.md};
   font-weight: 400;
 `;
-const Title = styled.div`
-  margin-top: 40px;
-  margin-bottom: 24px;
 
+const Title = styled.section`
   input {
     width: 100%;
     height: 52px;
@@ -31,21 +35,14 @@ const Title = styled.div`
     border: 1px solid #d9d9d9;
     box-shadow: 0 0 0 0px #bdddfd;
     transition: all 0.2s;
-
-    &::placeholder {
-      color: ${({ theme }) => theme.PALETTE.gray[100]};
-      font-weight: 700;
-      font-size: ${({ theme }) => theme.FONT_SIZE.md};
-    }
-    &:focus {
-      border-color: ${({ theme }) => theme.PALETTE.primary[200]};
-      box-shadow: 0 0 0 3px #bdddfd;
-    }
+  }
+  input:focus {
+    border-color: ${({ theme }) => theme.PALETTE.primary[200]};
+    box-shadow: 0 0 0 3px #bdddfd;
   }
 `;
-const Content = styled.div`
-  margin-bottom: 24px;
 
+const Content = styled.section`
   textarea {
     width: 100%;
     height: 280px;
@@ -56,36 +53,37 @@ const Content = styled.div`
     font-size: ${({ theme }) => theme.FONT_SIZE.sm};
     outline: none;
     transition: all 0.2s;
+  }
+  textarea:focus {
+    border-color: ${({ theme }) => theme.PALETTE.primary[200]};
+    box-shadow: 0 0 0 3px #bdddfd;
+  }
+`;
+const MoodScore = styled.section``;
 
-    &:focus {
-      border-color: ${({ theme }) => theme.PALETTE.primary[200]};
-      box-shadow: 0 0 0 3px #bdddfd;
-    }
-  }
+const Mood = styled.div`
+  ${flexCenter}
+  gap: 32px;
 `;
-const MoodScore = styled.div`
-  select {
-    width: 100%;
-    height: 52px;
-    padding: 0 16px;
-    border-radius: 10px;
-    border: 1px solid #d9d9d9;
-    box-shadow: 0 0 0 0px #bdddfd;
-    transition: all 0.2s;
-  }
-`;
+
 const Subheading = styled.div`
   font-size: ${({ theme }) => theme.FONT_SIZE.md};
   font-weight: 800;
   margin-bottom: 16px;
 `;
-const SaveBtn = styled.button`
-  width: 100%;
-  height: 52px;
-  border-radius: 10px;
-  font-size: ${({ theme }) => theme.FONT_SIZE.md};
-  font-weight: 700;
-  margin-top: 64px;
+
+const Buttons = styled.div`
+  display: flex;
+  gap: 24px;
+
+  button {
+    width: 100%;
+    height: 52px;
+    border-radius: 10px;
+    font-size: ${({ theme }) => theme.FONT_SIZE.md};
+    font-weight: 700;
+    margin-top: 64px;
+  }
 `;
 
 export {
@@ -95,6 +93,7 @@ export {
   Title,
   Content,
   MoodScore,
+  Mood,
   Subheading,
-  SaveBtn,
+  Buttons,
 };
