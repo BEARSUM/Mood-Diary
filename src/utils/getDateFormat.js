@@ -7,6 +7,11 @@ export const getDateFormat = (createdAt) => {
     day: "numeric",
   });
 
+  const dateNoDay = serverDate.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+  });
+
   const dateNoYear = serverDate.toLocaleDateString("ko-KR", {
     month: "long",
     day: "numeric",
@@ -25,5 +30,5 @@ export const getDateFormat = (createdAt) => {
 
   const time = serverDate.toLocaleTimeString("en-US", options);
 
-  return { dateString, dateNoYear, dayName, time };
+  return { dateString, dateNoDay, dateNoYear, dayName, time };
 };
