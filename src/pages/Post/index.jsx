@@ -46,7 +46,7 @@ const Post = () => {
     ]);
     dataId.current += 1;
 
-    navigate("/");
+    navigate("/", { replace: true });
   };
 
   const navigate = useNavigate();
