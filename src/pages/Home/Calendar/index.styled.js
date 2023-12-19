@@ -29,6 +29,7 @@ const Container = styled.div`
   }
 
   .react-calendar__tile {
+    height: 72px;
     color: ${({ theme }) => theme.PALETTE.black};
     ${flexColumnCenter}
     gap: 8px;

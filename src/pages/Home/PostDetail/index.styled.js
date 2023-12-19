@@ -32,6 +32,7 @@ const Title = styled.div`
 `;
 const Content = styled.div`
   margin-bottom: 24px;
+  line-height: 24px;
 `;
 const MoodScore = styled.div`
   select {
