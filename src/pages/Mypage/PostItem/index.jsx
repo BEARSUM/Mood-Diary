@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { useRecoilState } from "recoil";
 import { diaryState } from "recoil/atoms/diary.atom";
 
@@ -13,8 +15,14 @@ const PostItem = ({ diary }) => {
 
   const [data, setData] = useRecoilState(diaryState);
 
+  const navigate = useNavigate();
+
   const removeDiary = () => {
     setData(data.filter((it) => it.id !== id));
+  };
+
+  const editDiary = () => {
+    navigate(`/edit/${id}`);
   };
 
   return (
@@ -27,7 +35,9 @@ const PostItem = ({ diary }) => {
         </S.Diary>
       </S.Col>
       <S.Buttons>
-        <Button color="reverse">수정</Button>
+        <Button color="reverse" onClick={editDiary}>
+          수정
+        </Button>
         <Button color="cancel" onClick={removeDiary}>
           삭제
         </Button>
