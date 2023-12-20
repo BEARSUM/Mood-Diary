@@ -1,3 +1,6 @@
+import { useRecoilState } from "recoil";
+import { diaryState } from "recoil/atoms/diary.atom";
+
 import Button from "components/common/Button";
 
 import { getDateFormat } from "utils/getDateFormat";
@@ -5,8 +8,15 @@ import { getDateFormat } from "utils/getDateFormat";
 import * as S from "./index.styled";
 
 const PostItem = ({ diary }) => {
-  const { title, mood, createdAt } = diary;
+  const { id, title, mood, createdAt } = diary;
   const { dateString, dayName } = getDateFormat(createdAt);
+
+  const [data, setData] = useRecoilState(diaryState);
+
+  const removeDiary = () => {
+    setData(data.filter((it) => it.id !== id));
+  };
+
   return (
     <S.Container>
       <S.Col>
@@ -18,7 +28,9 @@ const PostItem = ({ diary }) => {
       </S.Col>
       <S.Buttons>
         <Button color="reverse">수정</Button>
-        <Button color="cancel">삭제</Button>
+        <Button color="cancel" onClick={removeDiary}>
+          삭제
+        </Button>
       </S.Buttons>
     </S.Container>
   );
