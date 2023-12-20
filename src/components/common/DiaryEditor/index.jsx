@@ -12,7 +12,7 @@ import { getDateFormat } from "utils/getDateFormat";
 import * as S from "./index.styled";
 import { useNavigate } from "react-router-dom";
 
-const Post = () => {
+const DiaryEditor = () => {
   const [diary, setDiary] = useRecoilState(diaryState);
   const [diaryId, setDiaryId] = useRecoilState(diaryIdState);
 
@@ -104,4 +104,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default DiaryEditor;
