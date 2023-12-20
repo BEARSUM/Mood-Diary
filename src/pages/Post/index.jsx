@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { diaryDateState } from "recoil/atoms/date.atom";
-import { diaryState } from "recoil/atoms/diary.atom";
+import { diaryState, diaryIdState } from "recoil/atoms/diary.atom";
 
 import Line from "components/common/Line";
 import Button from "components/common/Button";
@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const Post = () => {
   const [diary, setDiary] = useRecoilState(diaryState);
+  const [diaryId, setDiaryId] = useRecoilState(diaryIdState);
 
   const selectedDate = useRecoilValue(diaryDateState);
   const { dateString, dayName } = getDateFormat(selectedDate);
@@ -24,8 +25,6 @@ const Post = () => {
 
   const titleInput = useRef();
   const contentInput = useRef();
-
-  const dataId = useRef(0); //초기화 방지
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,10 +41,9 @@ const Post = () => {
 
     setDiary([
       ...diary,
-      { id: dataId.current, title, content, mood, createdAt: selectedDate },
+      { id: diaryId, title, content, mood, createdAt: selectedDate },
     ]);
-    dataId.current += 1;
-
+    setDiaryId((prev) => prev + 1);
     navigate("/", { replace: true });
   };
 
