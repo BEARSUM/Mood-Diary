@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "components/Layout";
 import Home from "pages/Home";
 import Mypage from "pages/Mypage";
-import Post from "pages/Post";
+import New from "pages/New";
+import Edit from "pages/Edit";
 
 const router = createBrowserRouter([
   {
@@ -14,8 +15,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/post",
-        element: <Post />,
+        path: "/new",
+        element: <New />,
+      },
+      {
+        path: "/edit/:id",
+        element: <Edit />,
       },
       {
         path: "/mypage",

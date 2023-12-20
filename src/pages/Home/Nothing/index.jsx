@@ -6,7 +6,7 @@ const Nothing = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/post");
+    navigate("/new");
   };
   return (
     <S.Container>
