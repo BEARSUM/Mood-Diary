@@ -12,7 +12,7 @@ import { getDateFormat } from "utils/getDateFormat";
 import * as S from "./index.styled";
 import { useNavigate } from "react-router-dom";
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ isEdit, originData }) => {
   const [diary, setDiary] = useRecoilState(diaryState);
   const [diaryId, setDiaryId] = useRecoilState(diaryIdState);
 
@@ -46,6 +46,14 @@ const DiaryEditor = () => {
     setDiaryId((prev) => prev + 1);
     navigate("/", { replace: true });
   };
+
+  useEffect(() => {
+    if (isEdit) {
+      setTitle(originData.title);
+      setContent(originData.content);
+      setMood(originData.mood);
+    }
+  }, [isEdit, originData]);
 
   const navigate = useNavigate();
   return (
