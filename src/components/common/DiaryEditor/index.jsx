@@ -39,11 +39,30 @@ const DiaryEditor = ({ isEdit, originData }) => {
       return;
     }
 
-    setDiary([
-      ...diary,
-      { id: diaryId, title, content, mood, createdAt: selectedDate },
-    ]);
-    setDiaryId((prev) => prev + 1);
+    if (!isEdit) {
+      const newItem = {
+        id: diaryId,
+        title,
+        content,
+        mood,
+        createdAt: selectedDate,
+      };
+      setDiary([newItem, ...diary]);
+      setDiaryId((prev) => prev + 1);
+    } else {
+      const editedItem = {
+        id: originData.id,
+        title,
+        content,
+        mood,
+        createdAt: originData.createdAt,
+      };
+      const editedData = diary.map((it) =>
+        it.id === originData.id ? editedItem : it
+      );
+      setDiary(editedData);
+    }
+
     navigate("/", { replace: true });
   };
 
