@@ -18,12 +18,26 @@ const Mypage = () => {
   const { dateNoDay } = getDateFormat(curDate);
 
   useEffect(() => {
-    const firstDate = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
-    const lastDate = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0);
+    const firstDate = new Date(
+      curDate.getFullYear(),
+      curDate.getMonth(),
+      1
+    ).getTime();
+
+    const lastDate = new Date(
+      curDate.getFullYear(),
+      curDate.getMonth() + 1,
+      0,
+      23,
+      59,
+      59
+    ).getTime();
 
     setData(
       diary.filter(
-        (it) => firstDate <= it.createdAt && lastDate >= it.createdAt
+        (it) =>
+          firstDate <= new Date(it.createdAt).getTime() &&
+          lastDate >= new Date(it.createdAt).getTime()
       )
     );
   }, [diary, curDate]);
