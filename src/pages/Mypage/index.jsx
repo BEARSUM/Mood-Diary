@@ -5,6 +5,7 @@ import { diaryState } from "recoil/atoms/diary.atom";
 import PostItem from "./PostItem";
 import Button from "components/common/Button";
 import Line from "components/common/Line";
+import Nothing from "components/common/Nothing";
 
 import { getDateFormat } from "utils/getDateFormat";
 
@@ -49,14 +50,22 @@ const Mypage = () => {
         </S.Buttons>
       </S.Header>
       <Line />
-      <S.Number>
-        총 <span>{data.length}</span>개의 일기
-      </S.Number>
-      <S.PostList>
-        {data.map((el) => (
-          <PostItem key={el.id} diary={el} />
-        ))}
-      </S.PostList>
+      {data.length ? (
+        <>
+          <S.Number>
+            총 <span>{data.length}</span>개의 일기
+          </S.Number>
+          <S.PostList>
+            {data.map((el) => (
+              <PostItem key={el.id} diary={el} />
+            ))}
+          </S.PostList>
+        </>
+      ) : (
+        <S.NothingWrap>
+          <Nothing page="mypage" />
+        </S.NothingWrap>
+      )}
     </S.Container>
   );
 };

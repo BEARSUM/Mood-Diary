@@ -2,10 +2,7 @@ import styled from "styled-components";
 import { flexColumnCenter } from "styles/common";
 
 const Container = styled.div`
-  background-color: ${({ theme }) => theme.PALETTE.white};
-  border-radius: 10px;
   width: 480px;
-
   ${flexColumnCenter}
   justify-content: center;
   gap: 24px;

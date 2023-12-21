@@ -12,7 +12,7 @@ import { getDateFormat } from "utils/getDateFormat";
 import * as S from "./index.styled";
 import { useNavigate } from "react-router-dom";
 
-const Post = () => {
+const DiaryEditor = ({ isEdit, originData }) => {
   const [diary, setDiary] = useRecoilState(diaryState);
   const [diaryId, setDiaryId] = useRecoilState(diaryIdState);
 
@@ -39,13 +39,40 @@ const Post = () => {
       return;
     }
 
-    setDiary([
-      ...diary,
-      { id: diaryId, title, content, mood, createdAt: selectedDate },
-    ]);
-    setDiaryId((prev) => prev + 1);
+    if (!isEdit) {
+      const newItem = {
+        id: diaryId,
+        title,
+        content,
+        mood,
+        createdAt: selectedDate,
+      };
+      setDiary([newItem, ...diary]);
+      setDiaryId((prev) => prev + 1);
+    } else {
+      const editedItem = {
+        id: originData.id,
+        title,
+        content,
+        mood,
+        createdAt: originData.createdAt,
+      };
+      const editedData = diary.map((it) =>
+        it.id === originData.id ? editedItem : it
+      );
+      setDiary(editedData);
+    }
+
     navigate("/", { replace: true });
   };
+
+  useEffect(() => {
+    if (isEdit) {
+      setTitle(originData.title);
+      setContent(originData.content);
+      setMood(originData.mood);
+    }
+  }, [isEdit, originData]);
 
   const navigate = useNavigate();
   return (
@@ -104,4 +131,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default DiaryEditor;

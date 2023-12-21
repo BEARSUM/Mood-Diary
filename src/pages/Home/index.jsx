@@ -7,7 +7,7 @@ import moment from "moment";
 
 import ReactCalendar from "./Calendar";
 import PostDetail from "./PostDetail";
-import Nothing from "./Nothing";
+import Nothing from "../../components/common/Nothing";
 
 import * as S from "./index.styled";
 
@@ -29,7 +29,11 @@ const Home = () => {
     <S.Container>
       <ReactCalendar onSelect={setSelectedDate} />
       <S.Diary>
-        {!!selectedDiary ? <PostDetail diary={selectedDiary} /> : <Nothing />}
+        {!!selectedDiary ? (
+          <PostDetail diary={selectedDiary} />
+        ) : (
+          <Nothing page="home" />
+        )}
       </S.Diary>
     </S.Container>
   );
