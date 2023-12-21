@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { flexSpaceBetweenCenter } from "styles/common";
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.PALETTE.white};
@@ -48,4 +49,10 @@ const PostList = styled.div`
     border-bottom: none;
   }
 `;
-export { Container, Header, Month, Buttons, PostList, Number };
+const NothingWrap = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+export { Container, Header, Month, Buttons, PostList, Number, NothingWrap };
