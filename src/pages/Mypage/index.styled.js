@@ -27,17 +27,29 @@ const Buttons = styled.div`
     padding: 0;
   }
 `;
-
-const Number = styled.div`
+const ListHeader = styled.div`
+  ${flexSpaceBetweenCenter}
   margin-top: 40px;
-  margin-bottom: 24px;
-
+  margin-bottom: 8px;
+`;
+const Number = styled.div`
   color: ${({ theme }) => theme.PALETTE.gray[200]};
   font-weight: 400;
   font-size: ${({ theme }) => theme.FONT_SIZE.md};
   span {
     font-weight: 500;
   }
+`;
+
+const Sort = styled.div`
+  display: flex;
+`;
+const SortType = styled.div`
+  color: ${({ isClicked }) => (isClicked ? "#1f1f1f" : "#898989")};
+  font-weight: ${({ isClicked }) => (isClicked ? 500 : 400)};
+  font-size: ${({ theme }) => theme.FONT_SIZE.md};
+  padding: 8px;
+  cursor: pointer;
 `;
 const PostList = styled.div`
   border: 1px solid ${({ theme }) => theme.PALETTE.gray[100]};
@@ -55,4 +67,15 @@ const NothingWrap = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
-export { Container, Header, Month, Buttons, PostList, Number, NothingWrap };
+export {
+  Container,
+  Header,
+  Month,
+  Buttons,
+  ListHeader,
+  PostList,
+  Number,
+  Sort,
+  SortType,
+  NothingWrap,
+};
