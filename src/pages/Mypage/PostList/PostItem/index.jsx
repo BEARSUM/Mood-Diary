@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useRecoilState } from "recoil";
@@ -46,4 +47,4 @@ const PostItem = ({ diary }) => {
   );
 };
 
-export default PostItem;
+export default React.memo(PostItem);
