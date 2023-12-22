@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { diaryState } from "recoil/atoms/diary.atom";
+import { useEffect } from "react";
 
 import DiaryEditor from "components/common/DiaryEditor";
-
-import { getDateFormat } from "utils/getDateFormat";
 
 import * as S from "./index.styled";
 
 const New = () => {
-  const diary = useRecoilValue(diaryState);
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `mood diary - new diary`;
+    console.log(titleElement);
+  }, []);
 
   return (
     <S.Container>
