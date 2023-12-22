@@ -8,7 +8,6 @@ const New = () => {
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
     titleElement.innerHTML = `mood diary - new diary`;
-    console.log(titleElement);
   }, []);
 
   return (

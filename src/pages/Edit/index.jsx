@@ -26,14 +26,11 @@ const Edit = () => {
     } else {
       navigate("/", { replace: true });
     }
-
-    console.log(id);
   }, [id, diary]);
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
     titleElement.innerHTML = `mood diary - ${id}번 일기 수정`;
-    console.log(titleElement);
   }, []);
 
   return (

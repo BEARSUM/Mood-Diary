@@ -54,7 +54,6 @@ const Mypage = () => {
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
     titleElement.innerHTML = `mood diary - mypage`;
-    console.log(titleElement);
   }, []);
 
   return (
