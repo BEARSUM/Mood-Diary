@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { diaryDateState } from "recoil/atoms/date.atom";
 import { diaryState, diaryIdState } from "recoil/atoms/diary.atom";
@@ -25,6 +25,10 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   const titleInput = useRef();
   const contentInput = useRef();
+
+  const handleClickMoodItem = useCallback((i) => {
+    setMood(i + 1);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -107,17 +111,18 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
       <S.MoodScore>
         <S.Subheading>오늘의 감정 점수</S.Subheading>
-        <S.Mood>
+        <div>
           {Array(5)
             .fill(1)
             .map((_, i) => (
               <MoodItem
+                key={`mood-${i + 1}`}
                 index={i}
                 isSelected={i + 1 === mood}
-                onClick={() => setMood(i + 1)}
+                onClick={handleClickMoodItem}
               />
             ))}
-        </S.Mood>
+        </div>
       </S.MoodScore>
       <S.Buttons>
         <Button color="reverse" onClick={() => navigate(-1)}>

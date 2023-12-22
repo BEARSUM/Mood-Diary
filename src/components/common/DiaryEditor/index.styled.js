@@ -59,11 +59,11 @@ const Content = styled.section`
     box-shadow: 0 0 0 3px #bdddfd;
   }
 `;
-const MoodScore = styled.section``;
-
-const Mood = styled.div`
-  ${flexCenter}
-  gap: 32px;
+const MoodScore = styled.section`
+  & > div:last-child {
+    ${flexCenter}
+    gap: 32px;
+  }
 `;
 
 const Subheading = styled.div`
@@ -93,7 +93,6 @@ export {
   Title,
   Content,
   MoodScore,
-  Mood,
   Subheading,
   Buttons,
 };

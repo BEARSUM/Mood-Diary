@@ -1,8 +1,14 @@
+import React from "react";
+
 import * as S from "./index.styled";
 
 const MoodItem = ({ index, isSelected, onClick }) => {
   return (
-    <S.Container index={index} isSelected={isSelected} onClick={onClick}>
+    <S.Container
+      index={index}
+      isSelected={isSelected}
+      onClick={() => onClick(index)}
+    >
       <img
         src={`/assets/img/emotion${index + 1}.png`}
         alt={`mood${index + 1}`}
@@ -11,4 +17,4 @@ const MoodItem = ({ index, isSelected, onClick }) => {
   );
 };
 
-export default MoodItem;
+export default React.memo(MoodItem);
