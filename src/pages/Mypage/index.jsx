@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { diaryState } from "recoil/atoms/diary.atom";
 
-import PostItem from "./PostItem";
+import PostList from "./PostList";
 import Button from "components/common/Button";
 import Line from "components/common/Line";
 import Nothing from "components/common/Nothing";
@@ -16,7 +16,6 @@ const Mypage = () => {
   const [data, setData] = useState([]); //선택된 월별 일기 데이터
   const [curDate, setCurDate] = useState(new Date());
 
-  const [sortType, setSortType] = useState("latest");
   const { dateNoDay } = getDateFormat(curDate);
 
   useEffect(() => {
@@ -44,18 +43,6 @@ const Mypage = () => {
     );
   }, [diary, curDate]);
 
-  useEffect(() => {
-    setData(data.sort((a, b) => compare(a, b)));
-  }, [sortType]);
-
-  const compare = (a, b) => {
-    if (sortType === "latest") {
-      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-    } else {
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-    }
-  };
-
   const increaseMonth = () => {
     setCurDate(new Date(curDate.getFullYear(), curDate.getMonth() + 1));
   };
@@ -79,32 +66,7 @@ const Mypage = () => {
       </S.Header>
       <Line />
       {data.length ? (
-        <>
-          <S.ListHeader>
-            <S.Number>
-              총 <span>{data.length}</span>개의 일기
-            </S.Number>
-            <S.Sort>
-              <S.SortType
-                onClick={() => setSortType("latest")}
-                isClicked={sortType === "latest"}
-              >
-                최신순
-              </S.SortType>
-              <S.SortType
-                onClick={() => setSortType("old")}
-                isClicked={sortType === "old"}
-              >
-                오래된순
-              </S.SortType>
-            </S.Sort>
-          </S.ListHeader>
-          <S.PostList>
-            {data.map((el) => (
-              <PostItem key={el.id} diary={el} />
-            ))}
-          </S.PostList>
-        </>
+        <PostList data={data} onChange={setData} />
       ) : (
         <S.NothingWrap>
           <Nothing page="mypage" />
