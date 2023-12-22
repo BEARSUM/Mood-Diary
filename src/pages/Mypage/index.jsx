@@ -18,6 +18,14 @@ const Mypage = () => {
 
   const { dateNoDay } = getDateFormat(curDate);
 
+  const increaseMonth = () => {
+    setCurDate(new Date(curDate.getFullYear(), curDate.getMonth() + 1));
+  };
+
+  const decreaseMonth = () => {
+    setCurDate(new Date(curDate.getFullYear(), curDate.getMonth() - 1));
+  };
+
   useEffect(() => {
     const firstDate = new Date(
       curDate.getFullYear(),
@@ -43,13 +51,11 @@ const Mypage = () => {
     );
   }, [diary, curDate]);
 
-  const increaseMonth = () => {
-    setCurDate(new Date(curDate.getFullYear(), curDate.getMonth() + 1));
-  };
-
-  const decreaseMonth = () => {
-    setCurDate(new Date(curDate.getFullYear(), curDate.getMonth() - 1));
-  };
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `mood diary - mypage`;
+    console.log(titleElement);
+  }, []);
 
   return (
     <S.Container>
