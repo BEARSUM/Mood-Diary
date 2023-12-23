@@ -6,7 +6,7 @@ import * as S from "./index.styled";
 
 const PostList = ({ data, onChange, sortType }) => {
   const compare = (a, b) => {
-    if (sortType === "latest") {
+    if (sortType === "old") {
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     } else {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
@@ -14,7 +14,8 @@ const PostList = ({ data, onChange, sortType }) => {
   };
 
   useEffect(() => {
-    onChange(data.sort((a, b) => compare(a, b)));
+    const sortedData = [...data].sort((a, b) => compare(a, b));
+    onChange(sortedData);
   }, [sortType]);
 
   return (

@@ -33,6 +33,7 @@ const Title = styled.div`
 const Content = styled.pre`
   margin-bottom: 24px;
   line-height: 24px;
+  white-space: pre-wrap;
 `;
 const MoodScore = styled.div`
   select {

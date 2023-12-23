@@ -1,15 +1,23 @@
 import styled from "styled-components";
 import { flexCenter, flexSpaceBetweenCenter } from "styles/common";
+import { media } from "styles/media";
 
 const Container = styled.form`
   background-color: ${({ theme }) => theme.PALETTE.white};
   border-radius: 10px;
-  width: 800px;
+  max-width: 800px;
   padding: 60px;
 
   section {
     margin-bottom: 32px;
   }
+
+  ${media.medium`
+    padding: 48px 40px;
+`}
+  ${media.small`
+    padding: 40px 32px;
+`}
 `;
 const Header = styled.div`
   font-size: ${({ theme }) => theme.FONT_SIZE.hg};
@@ -24,6 +32,11 @@ const Description = styled.div`
   color: ${({ theme }) => theme.PALETTE.gray[200]};
   font-size: ${({ theme }) => theme.FONT_SIZE.md};
   font-weight: 400;
+
+  ${media.small`
+  flex-direction: column;
+  gap:8px;
+`}
 `;
 
 const Title = styled.section`
@@ -64,6 +77,11 @@ const MoodScore = styled.section`
   & > div:last-child {
     ${flexCenter}
     gap: 32px;
+    flex-wrap: wrap;
+
+    ${media.large`
+    gap: 16px;
+    `}
   }
 `;
 

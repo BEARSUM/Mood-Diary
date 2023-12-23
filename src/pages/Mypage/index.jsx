@@ -6,6 +6,7 @@ import PostList from "./PostList";
 import Button from "components/common/Button";
 import Line from "components/common/Line";
 import Nothing from "components/common/Nothing";
+import Chart from "./Chart";
 
 import { getDateFormat } from "utils/getDateFormat";
 
@@ -58,6 +59,7 @@ const Mypage = () => {
     const titleElement = document.getElementsByTagName("title")[0];
     titleElement.innerHTML = `mood diary - mypage`;
   }, []);
+
   return (
     <S.Container>
       <S.Header>
@@ -72,27 +74,33 @@ const Mypage = () => {
         </S.Buttons>
       </S.Header>
       <Line />
-      <S.ListHeader>
-        <S.Number>
-          총 <span>{data.length}</span>개의 일기
-        </S.Number>
-        <S.Sort>
-          <S.SortType
-            onClick={() => setSortType("latest")}
-            isClicked={sortType === "latest"}
-          >
-            최신순
-          </S.SortType>
-          <S.SortType
-            onClick={() => setSortType("old")}
-            isClicked={sortType === "old"}
-          >
-            오래된순
-          </S.SortType>
-        </S.Sort>
-      </S.ListHeader>
       {data.length ? (
-        <PostList data={data} onChange={setData} sortType={sortType} />
+        <>
+          <S.ChartWrap>
+            <S.ChartHeader>감정</S.ChartHeader>
+            <Chart data={data} />
+          </S.ChartWrap>
+          <S.ListHeader>
+            <S.Number>
+              일기 <span>{data.length}</span>
+            </S.Number>
+            <S.Sort>
+              <S.SortType
+                onClick={() => setSortType("latest")}
+                isClicked={sortType === "latest"}
+              >
+                최신순
+              </S.SortType>
+              <S.SortType
+                onClick={() => setSortType("old")}
+                isClicked={sortType === "old"}
+              >
+                오래된순
+              </S.SortType>
+            </S.Sort>
+          </S.ListHeader>
+          <PostList data={data} onChange={setData} sortType={sortType} />
+        </>
       ) : (
         <S.NothingWrap>
           <Nothing page="mypage" />
