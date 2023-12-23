@@ -10,7 +10,7 @@ const Container = styled.div`
   }
 
   .react-calendar {
-    width: 400px;
+    width: 100%;
     border: none;
   }
 
@@ -40,6 +40,7 @@ const Container = styled.div`
       color: ${({ theme }) => theme.PALETTE.black};
       font-size: ${({ theme }) => theme.FONT_SIZE.xs};
       font-weight: 500;
+      white-space: nowrap;
     }
     img {
       width: 24px;
@@ -62,6 +63,7 @@ const Container = styled.div`
 
   .react-calendar__tile--now {
     background: transparent;
+
     abbr {
       color: ${({ theme }) => theme.PALETTE.white};
       font-weight: 600;
