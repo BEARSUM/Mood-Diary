@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "styles/media";
 
 const color = ["#64c964", "#9dd672", "#fdce15", "#fd8345", "#fd565f"];
 
@@ -18,6 +19,14 @@ const Container = styled.div`
     background-color: ${({ index }) => color[index]};
     border: 1px solid ${({ index }) => color[index]};
   }
+
+  ${media.medium`
+  img {
+    width: 72px;
+    height: 72px;
+    padding: 8px;
+  }
+`}
 `;
 
 export { Container };
