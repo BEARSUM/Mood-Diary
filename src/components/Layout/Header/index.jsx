@@ -13,7 +13,13 @@ function Header() {
         <img alt="mooddiary-logo" src="/assets/img/logo.svg" />
       </Button>
       <Button color="transparent" onClick={() => navigate("/mypage")}>
-        <img alt="mypage" src="/assets/img/mypage.svg" />
+        <picture>
+          <source
+            srcset="/assets/img/mypage-icon.svg"
+            media="(max-width: 600px)"
+          />
+          <img alt="mypage" src="/assets/img/mypage.svg" />
+        </picture>
       </Button>
     </S.Container>
   );
