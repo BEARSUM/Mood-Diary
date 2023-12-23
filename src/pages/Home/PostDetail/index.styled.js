@@ -4,7 +4,7 @@ import { flexSpaceBetweenCenter } from "styles/common";
 const Container = styled.div`
   background-color: ${({ theme }) => theme.PALETTE.white};
   border-radius: 10px;
-  width: 480px;
+  width: 100%;
   padding: 24px 0;
 `;
 const Header = styled.div`
@@ -30,7 +30,7 @@ const Title = styled.div`
   font-weight: 800;
   }
 `;
-const Content = styled.div`
+const Content = styled.pre`
   margin-bottom: 24px;
   line-height: 24px;
 `;

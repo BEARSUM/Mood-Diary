@@ -25,6 +25,11 @@ const Home = () => {
     setSelectedDiary(targetDiary);
   }, [selectedDate]);
 
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `mood diary`;
+  }, []);
+
   return (
     <S.Container>
       <ReactCalendar onSelect={setSelectedDate} />

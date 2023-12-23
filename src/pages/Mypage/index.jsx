@@ -15,6 +15,7 @@ const Mypage = () => {
   const diary = useRecoilValue(diaryState);
   const [data, setData] = useState([]); //선택된 월별 일기 데이터
   const [curDate, setCurDate] = useState(new Date());
+  const [sortType, setSortType] = useState("latest");
 
   const { dateNoDay } = getDateFormat(curDate);
 
@@ -27,6 +28,8 @@ const Mypage = () => {
   };
 
   useEffect(() => {
+    setSortType("latest");
+
     const firstDate = new Date(
       curDate.getFullYear(),
       curDate.getMonth(),
@@ -54,9 +57,7 @@ const Mypage = () => {
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
     titleElement.innerHTML = `mood diary - mypage`;
-    console.log(titleElement);
   }, []);
-
   return (
     <S.Container>
       <S.Header>
@@ -71,8 +72,27 @@ const Mypage = () => {
         </S.Buttons>
       </S.Header>
       <Line />
+      <S.ListHeader>
+        <S.Number>
+          총 <span>{data.length}</span>개의 일기
+        </S.Number>
+        <S.Sort>
+          <S.SortType
+            onClick={() => setSortType("latest")}
+            isClicked={sortType === "latest"}
+          >
+            최신순
+          </S.SortType>
+          <S.SortType
+            onClick={() => setSortType("old")}
+            isClicked={sortType === "old"}
+          >
+            오래된순
+          </S.SortType>
+        </S.Sort>
+      </S.ListHeader>
       {data.length ? (
-        <PostList data={data} onChange={setData} />
+        <PostList data={data} onChange={setData} sortType={sortType} />
       ) : (
         <S.NothingWrap>
           <Nothing page="mypage" />

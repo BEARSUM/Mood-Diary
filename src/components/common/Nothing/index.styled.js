@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { flexColumnCenter } from "styles/common";
 
 const Container = styled.div`
-  width: 480px;
   ${flexColumnCenter}
   justify-content: center;
   gap: 24px;

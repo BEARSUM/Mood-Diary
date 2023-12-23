@@ -27,4 +27,5 @@ export const Button = styled.button`
   cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
   padding: 8px 18px;
   font-size: ${({ theme }) => theme.FONT_SIZE.xs};
+  white-space: nowrap;
 `;
