@@ -30,7 +30,7 @@ const Title = styled.div`
   font-weight: 800;
   }
 `;
-const Content = styled.div`
+const Content = styled.pre`
   margin-bottom: 24px;
   line-height: 24px;
 `;
