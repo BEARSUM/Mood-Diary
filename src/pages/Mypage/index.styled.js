@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexSpaceBetweenCenter } from "styles/common";
+import { flexColumnCenter, flexSpaceBetweenCenter } from "styles/common";
 
 const Container = styled.div`
   position: relative;
@@ -27,16 +27,32 @@ const Buttons = styled.div`
     padding: 0;
   }
 `;
+const ChartWrap = styled.div`
+  & > div:last-child {
+    padding: 24px 0;
+    border: 1px solid ${({ theme }) => theme.PALETTE.gray[100]};
+    border-radius: 10px;
+    ${flexColumnCenter}
+  }
+`;
+const ChartHeader = styled.div`
+  color: ${({ theme }) => theme.PALETTE.black};
+  font-weight: 600;
+  font-size: ${({ theme }) => theme.FONT_SIZE.md};
+  margin-top: 24px;
+  margin-bottom: 16px;
+`;
 const ListHeader = styled.div`
   ${flexSpaceBetweenCenter}
-  margin-top: 40px;
+  margin-top: 24px;
   margin-bottom: 8px;
 `;
 const Number = styled.div`
-  color: ${({ theme }) => theme.PALETTE.gray[200]};
-  font-weight: 400;
+  color: ${({ theme }) => theme.PALETTE.black};
+  font-weight: 600;
   font-size: ${({ theme }) => theme.FONT_SIZE.md};
   span {
+    color: ${({ theme }) => theme.PALETTE.gray[100]};
     font-weight: 500;
   }
 `;
@@ -70,6 +86,8 @@ const NothingWrap = styled.div`
 export {
   Container,
   Header,
+  ChartWrap,
+  ChartHeader,
   Month,
   Buttons,
   ListHeader,
